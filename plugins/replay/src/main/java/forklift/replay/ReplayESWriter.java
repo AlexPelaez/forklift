@@ -110,7 +110,9 @@ public class ReplayESWriter extends ReplayStoreThread<ReplayESWriterMsg> impleme
         final HttpEntity entity;
         try {
             final String entityContents = mapper.writeValueAsString(replayMessage.getFields());
+            log.info("entityContents: {}", entityContents)
             entity = new NStringEntity(entityContents, ContentType.APPLICATION_JSON);
+            log.info("entity: {}", entity)
         } catch (JsonProcessingException e) {
             log.error("Could not write replay fields to JSON: (id {}, fields {})", replayMessage.getId(), replayMessage.getFields(), e);
             return;
